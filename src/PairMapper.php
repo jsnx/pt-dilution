@@ -32,8 +32,6 @@ class PairMapper
                         $dcaPair->averageCalculator->totalAmount,
                         $dcaPair->averageCalculator->avgPrice,
                         $dcaPair->currentPrice,
-                        //REMOVE AFTER DEBUGGING!
-                        $this->logger->info('Current Price of {$dcaPair->currentPrice}');
                         $this->config->maxCost,
                         $this->config->targetLossLevel
                     );
