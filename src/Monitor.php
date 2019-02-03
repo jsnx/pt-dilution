@@ -127,8 +127,9 @@ class Monitor
                     if (!$buy) {
                         $this->logger->info("{$activePair->market} at least one indicator signals false, hold of buy order");
                         //REMOVE AFTER DEBUGGING
-                        $buyAmount = $this->sigFig($this->config->maxCost / 0.02201200, 3);
+                        $buyAmount = $this->sigFig($this->config->maxCost / $dcaPair->currentPrice, 3);
                         $this->logger->info("Buy Amount = {$buyAmount}");
+
                         continue;
                     }
 

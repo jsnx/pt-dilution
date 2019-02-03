@@ -15,6 +15,7 @@ class PairMapper
     public function populateActivePairs()
     {
         foreach ($this->dcaLog as $dcaPair) {
+
             if ($this->activePairs->count() >= $this->config->maxPairs) {
                 $this->logger->info('No room for additional pairs');
                 break;
