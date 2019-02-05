@@ -132,7 +132,11 @@ class Monitor
                     $buyAmount = $this->sigFig($this->config->maxCost / $dcaPair->currentPrice, 3);
 
                     //DEBUG OUTPUT TO CHECK HOW THE BUY AMOUNT LOOKS LIKE
-                    $this->logger->info("THE NEXT LINE SHOWS THE BUY OBJECT");
+                    $this->logger->info("THE NEXT LINE SHOWS THE this->config->maxCost");
+                    $this->logger->info(json_encode($this->config->maxCost));
+                    $this->logger->info("THE NEXT LINE SHOWS THE dcaPair->currentPrice");
+                    $this->logger->info(json_encode($$dcaPair->currentPrice));
+                    $this->logger->info("THE NEXT LINE SHOWS THE BUY AMOUNT");
                     $this->logger->info(json_encode($buyAmount));
 
                     $newTotalAmount = $dcaPair->averageCalculator->totalAmount + $buyAmount;
