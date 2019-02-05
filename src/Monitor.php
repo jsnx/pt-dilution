@@ -126,20 +126,26 @@ class Monitor
 
                     if (!$buy) {
                         $this->logger->info("{$activePair->market} at least one indicator signals false, hold of buy order");
-                        //REMOVE AFTER DEBUGGING
-                        $buyAmount = $this->sigFig($this->config->maxCost / $dcaPair->currentPrice, 3);
-                        $this->logger->info("Buy Amount = {$buyAmount}");
-
                         continue;
                     }
 
                     $buyAmount = $this->sigFig($this->config->maxCost / $dcaPair->currentPrice, 3);
+
+                    //DEBUG OUTPUT TO CHECK HOW THE BUY AMOUNT LOOKS LIKE
+                    $this->logger->info("THE NEXT LINE SHOWS THE BUY OBJECT");
+                    $this->logger->info(json_encode($buyAmount));
+
                     $newTotalAmount = $dcaPair->averageCalculator->totalAmount + $buyAmount;
                     $newTotalCost = $dcaPair->averageCalculator->totalCost + $this->config->maxCost;
                     $newAverage = $newTotalCost / $newTotalAmount;
 
                     // Next, place buy order (will make the coin visible in PAIRS or DCA log)
                     $buyOrder = (object)$this->binance->marketBuy($activePair->market, $buyAmount);
+
+                    //DEBUG OUTPUT TO CHECK HOW THE BUY OBJECT LOOKS LIKE
+                    $this->logger->info("THE NEXT LINE SHOWS THE BUY OBJECT");
+                    $this->logger->info(json_encode($buyOrder));
+
                     $slice->buyOrder = $buyOrder;
                     $this->logger->info("Place buy order for $buyAmount of {$activePair->market}");
                     $this->logger->info(json_encode($buyOrder));
